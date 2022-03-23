@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="project" type="projectType"/>
+    <xs:complexType name="projectType">
+        <xs:sequence>
+            <xs:element name="character" type="xs:string"/>
+            <xs:element name="source" type="xs:string"/>
+            <xs:element name="dueDate" type="xs:string"/>
+            <xs:element name="startDate" type="xs:string"/>
+            <xs:element name="finishDate" type="xs:string"/>
+            <xs:element name="budget">
+                <xs:simpleType>
+                    <xs:restriction base="xs:float">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="componentList" type="componentListType"/>
+            <xs:element name="conventionList" type="conventionListType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="componentListType">
+        <xs:sequence>
+            <xs:element name="component" type="componentType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="componentType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="cost">
+                <xs:simpleType>
+                    <xs:restriction base="xs:float">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="taskList" type="taskListType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="taskListType">
+        <xs:sequence>
+            <xs:element name="task" type="taskType" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="taskType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="progress">
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxInclusive value="100"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="timeElapsedHours" type="xs:nonNegativeInteger"/>
+            <xs:element name="timeElapsedMinutes">
+                <xs:simpleType>
+                    <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxInclusive value="59"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="conventionListType">
+        <xs:sequence>
+            <xs:element name="convention" type="conventionType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="conventionType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
+            <xs:element name="competitionList" type="competitionListType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="competitionListType">
+        <xs:sequence>
+            <xs:element name="competition" type="competitionType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="competitionType">
+        <xs:sequence>
+            <xs:element name="category" type="xs:string"/>
+            <xs:element name="award" type="xs:string"/>
+            <xs:element name="prize" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -20,9 +20,14 @@ class TransformerTest {
 
     @Test
     void transformToObject() {
-        Project project = transformer.transformToObjectFromFile("C:\\Users\\Bri\\Documents\\Code\\Java\\saitynoPraktinis\\src\\test\\resources\\testData.xml");
+        Projects projects = transformer.transformToObjectFromFile("C:\\Users\\Bri\\Documents\\Code\\Java\\saitynoPraktinis\\src\\test\\resources\\testData.xml");
+
+        assertNotNull(projects);
+        assertNotNull(projects.getProjectList());
+        assertEquals(1, projects.getProjectList().size());
 
         // test project data
+        Project project = projects.getProjectList().get(0);
         assertNotNull(project);
         assertEquals("char", project.getCharacter());
         assertEquals("source", project.getSource());
@@ -111,8 +116,8 @@ class TransformerTest {
     void transformToXmlFile() throws IOException {
         String filePathIn = "C:\\Users\\Bri\\Documents\\Code\\Java\\saitynoPraktinis\\src\\test\\resources\\testData.xml";
         String filePathOut = "C:\\Users\\Bri\\Documents\\Code\\Java\\saitynoPraktinis\\src\\test\\resources\\fileTest.xml";
-        Project project = transformer.transformToObjectFromFile(filePathIn);
-        transformer.transformToXmlFile(project, filePathOut);
+        Projects projects = transformer.transformToObjectFromFile(filePathIn);
+        transformer.transformToXmlFile(projects, filePathOut);
         Path path = Path.of(filePathOut);
         String xmlString = Files.readString(path);
         assertNotNull(xmlString);
@@ -155,8 +160,8 @@ class TransformerTest {
     @Test
     void transformToXmlString() {
         String filePath = "C:\\Users\\Bri\\Documents\\Code\\Java\\saitynoPraktinis\\src\\test\\resources\\testData.xml";
-        Project project = transformer.transformToObjectFromFile(filePath);
-        String xmlString = transformer.transformToXmlString(project);
+        Projects projects = transformer.transformToObjectFromFile(filePath);
+        String xmlString = transformer.transformToXmlString(projects);
         assertNotNull(xmlString);
         assertTrue(xmlString.contains("char"));
         assertTrue(xmlString.contains("source"));
@@ -193,6 +198,4 @@ class TransformerTest {
         assertTrue(xmlString.contains("con2"));
         assertTrue(xmlString.contains("conDate2"));
     }
-    //dont compare whole string, use contains
-    //galima versti i DOM
 }

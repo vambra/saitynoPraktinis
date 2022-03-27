@@ -1,3 +1,4 @@
+<!ELEMENT projectList (project)*>
 <!ELEMENT project (character|source|dueDate|startDate|finishDate|budget|componentList|conventionList)*>
 <!ELEMENT character (#PCDATA)>
 <!ELEMENT source (#PCDATA)>

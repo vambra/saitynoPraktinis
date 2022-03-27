@@ -22,7 +22,7 @@ public class Transformer {
 
     static {
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
+            jaxbContext = JAXBContext.newInstance(Projects.class);
 
         } catch (JAXBException e) {
             System.out.println(e.getMessage());
@@ -30,21 +30,19 @@ public class Transformer {
     }
 
     /**
-     * Performs JAXB transformation from XML file to Project object.
+     * Performs JAXB transformation from XML file to Projects object.
      *
      * @param fileName filename of the source XML file
-     * @return object {@link Project} created from the XML file
+     * @return object {@link Projects} created from the XML file
      */
-    public Project transformToObjectFromFile(String fileName) {
+    public Projects transformToObjectFromFile(String fileName) {
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             Path filePath = Path.of(fileName);
             String actual = Files.readString(filePath);
             StringReader reader = new StringReader(actual);
-            Project project = (Project) unmarshaller.unmarshal(reader);
-            return project;
-
+            Projects projects = (Projects) unmarshaller.unmarshal(reader);
+            return projects;
         } catch (JAXBException | IOException e) {
             System.out.println(e.getMessage());
             return null;
@@ -52,18 +50,17 @@ public class Transformer {
     }
 
     /**
-     * Performs JAXB transformation from XML string to Project object.
+     * Performs JAXB transformation from XML string to Projects object.
      *
      * @param xmlString XML string to turn into object
-     * @return object {@link Project} created from the XML file
+     * @return object {@link Projects} created from the XML file
      */
-    public Project transformToObjectFromString(String xmlString) {
+    public Projects transformToObjectFromString(String xmlString) {
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             StringReader reader = new StringReader(xmlString);
-            Project project = (Project) unmarshaller.unmarshal(reader);
-            return project;
+            Projects projects = (Projects) unmarshaller.unmarshal(reader);
+            return projects;
 
         } catch (JAXBException e) {
             System.out.println(e.getMessage());
@@ -72,18 +69,17 @@ public class Transformer {
     }
 
     /**
-     * Performs JAXB transformation from Project object to a formatted XML file.
+     * Performs JAXB transformation from Projects object to a formatted XML file.
      *
-     * @param project  object to turn into an XML file
+     * @param projects  object to turn into an XML file
      * @param fileName file to which to export the XML string
      */
-    public void transformToXmlFile(Project project, String fileName) {
+    public void transformToXmlFile(Projects projects, String fileName) {
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             StringWriter xmlWriter = new StringWriter();
-            marshaller.marshal(project, xmlWriter);
+            marshaller.marshal(projects, xmlWriter);
             FileWriter fileWriter = new FileWriter(fileName);
             fileWriter.write(xmlWriter.toString());
             fileWriter.close();
@@ -96,16 +92,15 @@ public class Transformer {
     /**
      * Performs JAXB transformation from Project object to an unformatted XML string.
      *
-     * @param project object to turn into an XML string
+     * @param projects object to turn into an XML string
      * @return formatted XML string
      */
-    public String transformToXmlString(Project project) {
+    public String transformToXmlString(Projects projects) {
         try {
-            jaxbContext = JAXBContext.newInstance(Project.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             // marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);  // <-- formats string
             StringWriter xmlWriter = new StringWriter();
-            marshaller.marshal(project, xmlWriter);
+            marshaller.marshal(projects, xmlWriter);
             return xmlWriter.toString();
 
         } catch (JAXBException e) {

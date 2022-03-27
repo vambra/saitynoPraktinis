@@ -69,4 +69,20 @@ class ConventionTest {
         assertTrue(convention.toString().contains("testAward"));
         assertTrue(convention.toString().contains("testPrize"));
     }
+
+    @Test
+    void testToString() {
+        convention.setName("testName");
+        convention.setDate("testDate");
+        List<Competition> competitionList = new ArrayList<>();
+        Competition competition = new Competition("testCategory", "testAward", "testPrize");
+        competitionList.add(competition);
+        convention.setCompetitionList(competitionList);
+        assertNotNull(convention);
+        assertTrue(convention.toString().contains("testName"));
+        assertTrue(convention.toString().contains("testDate"));
+        assertTrue(convention.toString().contains("testCategory"));
+        assertTrue(convention.toString().contains("testAward"));
+        assertTrue(convention.toString().contains("testPrize"));
+    }
 }

@@ -65,7 +65,23 @@ class ComponentTest {
         component.setTaskList(taskList);
         assertNotNull(component);
         assertEquals(taskList, component.getTaskList());
-        System.out.println();
+        assertTrue(component.toString().contains("taskName"));
+        assertTrue(component.toString().contains("10"));
+        assertTrue(component.toString().contains("2"));
+        assertTrue(component.toString().contains("30"));
+    }
+
+    @Test
+    void testToString() {
+        component.setName("testName");
+        component.setCost(10f);
+        List<Task> taskList = new ArrayList<>();
+        Task task = new Task("taskName", 10, 2, 30);
+        taskList.add(task);
+        component.setTaskList(taskList);
+        assertNotNull(component);
+        assertTrue(component.toString().contains("testName"));
+        assertTrue(component.toString().contains("10"));
         assertTrue(component.toString().contains("taskName"));
         assertTrue(component.toString().contains("10"));
         assertTrue(component.toString().contains("2"));

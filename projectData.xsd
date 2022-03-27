@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="projectList" type="projectListType"/>
+    <xs:complexType name="projectListType">
+        <xs:sequence>
+            <xs:element type="projectType" name="project" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:element name="project" type="projectType"/>
     <xs:complexType name="projectType">
         <xs:sequence>
@@ -64,7 +70,7 @@
     </xs:complexType>
     <xs:complexType name="conventionListType">
         <xs:sequence>
-            <xs:element name="convention" type="conventionType"/>
+            <xs:element name="convention" type="conventionType" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="conventionType">
@@ -76,7 +82,7 @@
     </xs:complexType>
     <xs:complexType name="competitionListType">
         <xs:sequence>
-            <xs:element name="competition" type="competitionType"/>
+            <xs:element name="competition" type="competitionType" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="competitionType">

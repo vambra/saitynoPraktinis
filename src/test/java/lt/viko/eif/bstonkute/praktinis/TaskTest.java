@@ -73,4 +73,17 @@ class TaskTest {
         assertEquals(15, task.getTimeElapsedMinutes());
         assertTrue(task.toString().contains("15"));
     }
+
+    @Test
+    void testToString() {
+        task.setName("testName");
+        task.setProgress(50);
+        task.setTimeElapsedHours(20);
+        task.setTimeElapsedMinutes(15);
+        assertNotNull(task);
+        assertTrue(task.toString().contains("testName"));
+        assertTrue(task.toString().contains("50"));
+        assertTrue(task.toString().contains("20"));
+        assertTrue(task.toString().contains("15"));
+    }
 }

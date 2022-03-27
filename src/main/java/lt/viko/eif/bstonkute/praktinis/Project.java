@@ -1,20 +1,17 @@
 package lt.viko.eif.bstonkute.praktinis;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * Class for storing information about a project - character name, character source material name,
+ * Class for storing information about a project - character name, character source material,
  * project due date, start and finish dates, budget of the project,
  * list of components (see class {@link Component}), list of conventions (see class {@link Convention}).
  *
  * @author Brigita Stonkutė
  */
-@XmlRootElement
 @XmlType(propOrder = {"character", "source", "dueDate", "startDate", "finishDate", "budget", "componentList", "conventionList"})
 public class Project {
     private String character;
@@ -31,6 +28,30 @@ public class Project {
      */
     public Project() {
         // empty constructor for error prevention
+    }
+
+    /**
+     * Class constructor that takes all the class fields as parameters.
+     *
+     * @param character      character name
+     * @param source         source title
+     * @param dueDate        due date of the project
+     * @param startDate      start date of the project
+     * @param finishDate     finish date of the project
+     * @param budget         budget of the project
+     * @param componentList  list of components
+     * @param conventionList list of conventions
+     */
+    public Project(String character, String source, String dueDate, String startDate, String finishDate,
+                   Float budget, List<Component> componentList, List<Convention> conventionList) {
+        this.character = character;
+        this.source = source;
+        this.dueDate = dueDate;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.budget = budget;
+        this.componentList = componentList;
+        this.conventionList = conventionList;
     }
 
     /**
@@ -52,18 +73,18 @@ public class Project {
     }
 
     /**
-     * Gets the source name of the character.
+     * Gets the source title of the character.
      *
-     * @return source name of the character
+     * @return source title of the character
      */
     public String getSource() {
         return source;
     }
 
     /**
-     * Sets the source name of the character.
+     * Sets the source title of the character.
      *
-     * @param source source name of the character
+     * @param source source title of the character
      */
     public void setSource(String source) {
         this.source = source;

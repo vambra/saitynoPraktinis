@@ -58,4 +58,15 @@ class CompetitionTest {
         assertEquals("testPrize", competition.getPrize());
         assertTrue(competition.toString().contains("testPrize"));
     }
+
+    @Test
+    void testToString() {
+        competition.setCategory("testCategory");
+        competition.setAward("testAward");
+        competition.setPrize("testPrize");
+        assertNotNull(competition);
+        assertTrue(competition.toString().contains("testCategory"));
+        assertTrue(competition.toString().contains("testAward"));
+        assertTrue(competition.toString().contains("testPrize"));
+    }
 }

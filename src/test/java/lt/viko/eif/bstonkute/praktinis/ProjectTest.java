@@ -169,4 +169,46 @@ class ProjectTest {
         assertTrue(project.toString().contains("testName"));
         assertTrue(project.toString().contains("testDate"));
     }
+
+    @Test
+    void testToString() {
+        project.setCharacter("testChar");
+        project.setSource("testSource");
+        project.setDueDate("testDueDate");
+        project.setStartDate("testStartDate");
+        project.setFinishDate("testFinishDate");
+        project.setBudget(100.00f);
+        List<Task> taskList = new ArrayList<>();
+        Task task = new Task("taskName", 10, 2, 30);
+        taskList.add(task);
+        List<Component> componentList = new ArrayList<>();
+        Component component = new Component("compName", 40f, taskList);
+        componentList.add(component);
+        project.setComponentList(componentList);
+        List<Competition> competitionList = new ArrayList<>();
+        Competition competition = new Competition("testCategory", "testAward", "testPrize");
+        competitionList.add(competition);
+        List<Convention> conventionList = new ArrayList<>();
+        Convention convention = new Convention("testName", "testDate", competitionList);
+        conventionList.add(convention);
+        project.setConventionList(conventionList);
+        assertNotNull(project);
+        assertTrue(project.toString().contains("testChar"));
+        assertTrue(project.toString().contains("testSource"));
+        assertTrue(project.toString().contains("testDueDate"));
+        assertTrue(project.toString().contains("testStartDate"));
+        assertTrue(project.toString().contains("testFinishDate"));
+        assertTrue(project.toString().contains("100,00"));
+        assertTrue(project.toString().contains("taskName"));
+        assertTrue(project.toString().contains("10"));
+        assertTrue(project.toString().contains("2"));
+        assertTrue(project.toString().contains("30"));
+        assertTrue(project.toString().contains("compName"));
+        assertTrue(project.toString().contains("40"));
+        assertTrue(project.toString().contains("testCategory"));
+        assertTrue(project.toString().contains("testAward"));
+        assertTrue(project.toString().contains("testPrize"));
+        assertTrue(project.toString().contains("testName"));
+        assertTrue(project.toString().contains("testDate"));
+    }
 }
